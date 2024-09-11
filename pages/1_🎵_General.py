@@ -75,7 +75,7 @@ def recommend_song(song_name, artist_name):
 
 
 # Streamlit interface
-st.title("Spotify Song Recommender")
+st.title("🔎General Song Recommender🔍")
 
 # Get song name and artist name from the user
 input_song = st.text_input("Enter the song name:")
