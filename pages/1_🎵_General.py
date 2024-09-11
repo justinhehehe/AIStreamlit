@@ -76,6 +76,9 @@ def recommend_song(song_name, artist_name):
 
 # Streamlit interface
 st.title("🔎General Song Recommender🔍")
+st.write("Have a favourite song and want look for more songs that are similar to it?")
+st.write("Try out the general song recommender!")
+st.write("Find songs that are similar to your song of choice based on it's characteristics!")
 
 # Get song name and artist name from the user
 input_song = st.text_input("🎶Enter the song name:")
