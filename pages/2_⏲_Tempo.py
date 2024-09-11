@@ -9,7 +9,7 @@ import difflib  # Import difflib for fuzzy matching
 data = pd.read_csv("spotify_songs.csv")
 
 # Select only the required columns
-filtered_data = data[['track_name', 'playlist_subgenre', 'speechiness', 'tempo', 'track_artist']]
+filtered_data = data[['track_name', 'playlist_subgenre', 'danceability', 'energy', 'tempo', 'track_artist']]
 
 # Drop rows where 'track_name' or 'track_artist' is NaN
 filtered_data = filtered_data.dropna(subset=['track_name', 'track_artist'])
@@ -18,13 +18,14 @@ filtered_data['track_name'] = filtered_data['track_name'].astype(str)  # Ensure 
 # Convert 'playlist_subgenre' to numeric using one-hot encoding
 data_encoded = pd.get_dummies(filtered_data['playlist_subgenre'])
 
-# Scale 'speechiness' and 'tempo'
+# Scale 'danceability', 'energy' and 'tempo'
 scaler = StandardScaler()
-filtered_data.loc[:, 'speechiness'] = scaler.fit_transform(filtered_data[['speechiness']])
+filtered_data.loc[:, 'danceability'] = scaler.fit_transform(filtered_data[['danceability']])
+filtered_data.loc[:, 'energy'] = scaler.fit_transform(filtered_data[['energy']])
 filtered_data.loc[:, 'tempo'] = scaler.fit_transform(filtered_data[['tempo']])
 
 # Combine encoded and scaled features
-features = pd.concat([data_encoded, filtered_data[['speechiness', 'tempo']]], axis=1)
+features = pd.concat([data_encoded, filtered_data[['speechiness', 'energy', 'tempo']]], axis=1)
 
 # Train the k-nearest neighbors model
 knn = NearestNeighbors(n_neighbors=10, metric='euclidean')
@@ -74,11 +75,11 @@ def recommend_song(song_name, artist_name):
 
 
 # Streamlit interface
-st.title("Spotify Song Recommender")
+st.title("⏲Recommend Song Based on Tempo⏲")
 
 # Get song name and artist name from the user
-input_song = st.text_input("Enter the song name:")
-input_artist = st.text_input("Enter the artist name:")
+input_song = st.text_input("🎶Enter the song name:")
+input_artist = st.text_input("👩‍🎤Enter the artist name🧑‍🎤:")
 
 # If both inputs are provided, run the recommendation function
 if input_song and input_artist:
