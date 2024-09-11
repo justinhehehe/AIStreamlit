@@ -25,7 +25,7 @@ scaler = StandardScaler()
 filtered_data[features_to_scale] = scaler.fit_transform(filtered_data[features_to_scale])
 
 # Combine encoded and scaled features
-features = pd.concat([data_encoded, filtered_data[features_to_scale], axis=1)
+features = pd.concat([data_encoded, filtered_data[features_to_scale]], axis=1)
 
 # Train the k-nearest neighbors model
 knn = NearestNeighbors(n_neighbors=10, metric='euclidean')
