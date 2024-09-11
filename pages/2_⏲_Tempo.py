@@ -76,7 +76,7 @@ def recommend_song(song_name, artist_name):
 
 # Streamlit interface
 st.title("⏲Recommend Song Based on Tempo⏲📊")
-st.write("Research has proven that the tempo and energy of songs can affect produuctivity and general behavior! With this recommender, get songs that have similar tempos and energy as the song of your choice to best suit your current needs!")
+st.write("Research has proven that the tempo and energy of songs can affect productivity and general behavior! With this recommender, get songs that have similar tempos and energy as the song of your choice to best suit your current needs!")
 
 # Get song name and artist name from the user
 input_song = st.text_input("🎶Enter the song name:")
