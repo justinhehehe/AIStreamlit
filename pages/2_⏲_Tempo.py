@@ -25,7 +25,7 @@ filtered_data.loc[:, 'energy'] = scaler.fit_transform(filtered_data[['energy']])
 filtered_data.loc[:, 'tempo'] = scaler.fit_transform(filtered_data[['tempo']])
 
 # Combine encoded and scaled features
-features = pd.concat([data_encoded, filtered_data[['speechiness', 'energy', 'tempo']]], axis=1)
+features = pd.concat([data_encoded, filtered_data[['danceability', 'energy', 'tempo']]], axis=1)
 
 # Train the k-nearest neighbors model
 knn = NearestNeighbors(n_neighbors=10, metric='euclidean')
