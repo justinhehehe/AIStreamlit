@@ -3,13 +3,12 @@ import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
 import joblib
-import difflib  # Import difflib for fuzzy matching
 
 
 # Load the dataset
 @st.cache_data
 def load_data():
-    data = pd.read_csv("AIStreamlit/spotify_songs.csv")
+    data = pd.read_csv("../pages/spotify_songs.csv")
     filtered_data = data[['track_name', 'playlist_subgenre', 'danceability', 'energy', 'tempo', 'track_artist']]
     filtered_data = filtered_data.dropna(subset=['track_name', 'track_artist'])  # Drop rows where 'track_name' is NaN
     filtered_data['track_name'] = filtered_data['track_name'].astype(str)  # Ensure all track names are strings
