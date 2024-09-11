@@ -75,7 +75,7 @@ def recommend_song(song_name, artist_name):
 
 
 # Streamlit interface
-st.title("⏲Recommend Song Based on Tempo⏲")
+st.title("⏲Recommend Song Based on Tempo⏲📊")
 
 # Get song name and artist name from the user
 input_song = st.text_input("🎶Enter the song name:")
