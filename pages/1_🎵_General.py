@@ -78,8 +78,8 @@ def recommend_song(song_name, artist_name):
 st.title("🔎General Song Recommender🔍")
 
 # Get song name and artist name from the user
-input_song = st.text_input("Enter the song name:")
-input_artist = st.text_input("Enter the artist name:")
+input_song = st.text_input("🎶Enter the song name:")
+input_artist = st.text_input("👩‍🎤Enter the artist name🧑‍🎤:")
 
 # If both inputs are provided, run the recommendation function
 if input_song and input_artist:
