@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 import difflib  # Import difflib for fuzzy matching
 
 # Load the dataset
-data = pd.read_csv("AIStreamlit/spotify_songs.csv")
+data = pd.read_csv("spotify_songs.csv")
 
 # Select only the required columns
 filtered_data = data[['track_name', 'playlist_subgenre', 'speechiness', 'tempo', 'track_artist']]
