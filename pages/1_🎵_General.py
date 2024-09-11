@@ -84,3 +84,9 @@ input_artist = st.text_input("👩‍🎤Enter the artist name🧑‍🎤:")
 # If both inputs are provided, run the recommendation function
 if input_song and input_artist:
     recommend_song(input_song, input_artist)
+
+if st.button("Recommend"):
+    if input_song and input_artist:
+        recommend_song(input_song, input_artist)
+    else:
+        st.write("Please enter both the song name and the artist name.")
