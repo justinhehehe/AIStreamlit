@@ -70,6 +70,7 @@ def recommend_song(song_name, artist_name):
     with st.spinner('Recommending...'):
         time.sleep(3)
     st.write(f"Songs similar to '**{closest_song}**' by **{closest_artist}**:")
+    st.divider()
     
     recommended_songs = set()  # Use a set to avoid duplicates
     for rec in recommendations:
@@ -92,4 +93,4 @@ if st.button("Recommend"):
     if input_song and input_artist:
         recommend_song(input_song, input_artist)
     else:
-        st.write("Please enter both the song name and the artist name.")
+        st.error("Please enter both the song name and the artist name.")
