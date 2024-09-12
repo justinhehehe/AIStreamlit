@@ -46,7 +46,7 @@ def recommend_song(song_name, artist_name):
         (filtered_data['track_artist'].str.contains(artist_name, case=False))
     ]
     
-     if closest_song_row.empty:
+    if closest_song_row.empty:
         st.error("No similar songs in database")
         #st.write(f"No close match found for '{song_name}' by '{artist_name}' in the dataset.")
         return
