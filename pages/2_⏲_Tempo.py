@@ -56,7 +56,7 @@ def recommend_song(song_name, artist_name):
         # Extract the closest match details
         closest_song = closest_song_row['track_name'].values[0]
         closest_artist = closest_song_row['track_artist'].values[0]
-        st.success(f"Closest match found: '{closest_song}' by {closest_artist}")
+        st.success(f"Closest match found: '**{closest_song}**' by **{closest_artist}**")
         #st.write(f"Closest match found: '{closest_song}' by {closest_artist}")
     
     # Extract the features of the closest matching song
@@ -69,7 +69,7 @@ def recommend_song(song_name, artist_name):
     recommendations = filtered_data.iloc[indices[0]][['track_name', 'track_artist']].values
     with st.spinner('Recommending...'):
         time.sleep(3)
-    st.write(f"Songs similar to '{closest_song}' by {closest_artist}:")
+    st.write(f"Songs similar to '**{closest_song}**' by **{closest_artist}**:")
     
     recommended_songs = set()  # Use a set to avoid duplicates
     for rec in recommendations:
