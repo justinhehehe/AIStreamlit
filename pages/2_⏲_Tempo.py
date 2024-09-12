@@ -48,7 +48,8 @@ def recommend_song(song_name, artist_name):
     ]
     
     if closest_song_row.empty:
-        st.write(f"No close match found for '{song_name}' by '{artist_name}' in the dataset.")
+        st.error("No similar songs in database")
+        #st.write(f"No close match found for '{song_name}' by '{artist_name}' in the dataset.")
         return
     else:
         # Extract the closest match details
