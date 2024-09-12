@@ -48,13 +48,15 @@ def recommend_song(song_name, artist_name):
     ]
     
     if closest_song_row.empty:
-        st.write(f"No close match found for '{song_name}' by '{artist_name}' in the dataset.")
+        st.error("No similar songs in database")
+        #st.write(f"No close match found for '{song_name}' by '{artist_name}' in the dataset.")
         return
     else:
         # Extract the closest match details
         closest_song = closest_song_row['track_name'].values[0]
         closest_artist = closest_song_row['track_artist'].values[0]
-        st.write(f"Closest match found: '{closest_song}' by {closest_artist}")
+        st.success(f"Closest match found: '{closest_song}' by {closest_artist}")
+        #st.write(f"Closest match found: '{closest_song}' by {closest_artist}")
     
     # Extract the features of the closest matching song
     input_features = features[filtered_data['track_name'] == closest_song]
