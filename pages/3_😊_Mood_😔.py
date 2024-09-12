@@ -65,6 +65,8 @@ def recommend_song(song_name, artist_name):
     
     # Retrieve the recommended songs and artists, excluding the input song
     recommendations = filtered_data.iloc[indices[0]][['track_name', 'track_artist']].values
+    with st.spinner('Recommending...'):
+        time.sleep(3)
     st.write(f"Songs similar to '{closest_song}' by {closest_artist}:")
     
     recommended_songs = set()  # Use a set to avoid duplicates
