@@ -76,7 +76,7 @@ def recommend_song(song_name, artist_name):
         song, artist = rec
         if song != closest_song and (song, artist) not in recommended_songs:  # Avoid duplicates and the input song
             recommended_songs.add((song, artist))
-            st.write(f"'{song}' by {artist}")
+            st.write(f"'**{song}**' by **{artist}**")
 
 
 # Streamlit interface
