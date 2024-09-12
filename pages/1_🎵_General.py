@@ -1,5 +1,6 @@
 # Imports
 import streamlit as st
+import time
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
