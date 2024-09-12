@@ -4,6 +4,7 @@ import time
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
+from youtubesearchpython import VideosSearch
 import difflib  # Import difflib for fuzzy matching
 
 # Load the dataset
