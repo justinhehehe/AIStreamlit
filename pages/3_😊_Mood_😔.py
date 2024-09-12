@@ -4,7 +4,8 @@ import time
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
-import difflib  # Import difflib for fuzzy matching
+import joblib
+import os
 
 # Load the dataset
 data = pd.read_csv("spotify_songs.csv")
@@ -19,7 +20,7 @@ filtered_data['track_name'] = filtered_data['track_name'].astype(str)  # Ensure 
 # Convert 'playlist_subgenre' to numeric using one-hot encoding
 data_encoded = pd.get_dummies(filtered_data['playlist_subgenre'])
 
-# Scale 'danceability', 'energy' and 'tempo'
+# Scale 'energy' and 'energy'
 scaler = StandardScaler()
 filtered_data.loc[:, 'valence'] = scaler.fit_transform(filtered_data[['valence']])
 filtered_data.loc[:, 'energy'] = scaler.fit_transform(filtered_data[['energy']])
@@ -83,6 +84,22 @@ def recommend_song(song_name, artist_name):
 # Streamlit interface
 st.title("Recommend Song Based on Mood😊😔📊")
 st.write("Feeling a type of mood? We dont judge! Input a song of your choice that matches how your feeling and we'll recommend you songs that match the mood of your choice!")
+
+#Function to display the top 5 happy and sad songs based on energy and valence
+def top_songs_by_mood(filtered_data):
+    happy_songs = filtered_data[(filtered_data['valence'] > 0.5) & (filtered_data['energy'] > 0.5)]
+    sad_songs = filtered_data[filtered_data['valence'] <= 0]
+
+    top_happy_songs = happy_songs.sort_values(by=['valence', 'energy'], ascending=False).head(5)
+    top_sad_songs = sad_songs.sort_values(by=['valence', 'energy'], ascending=True).head(5)
+
+    st.write("\nTop 5 Happy Songs:")
+    for index, row in top_happy_songs.iterrows():
+        st.write(f"'{row['track_name']}' by {row['track_artist']} (Valence: {row['valence']}, Energy: {row['energy']})")
+
+    st.write("\nTop 5 Sad Songs:")
+    for index, row in top_sad_songs.iterrows():
+        st.write(f"'{row['track_name']}' by {row['track_artist']} (Valence: {row['valence']}, Energy: {row['energy']})")
 
 # Get song name and artist name from the user
 input_song = st.text_input("🎶Enter the song name:")
