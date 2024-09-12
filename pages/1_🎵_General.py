@@ -11,7 +11,7 @@ import difflib  # Import difflib for fuzzy matching
 data = pd.read_csv("spotify_songs.csv")
 
 # Select only the required columns
-filtered_data = data[['track_name', 'playlist_subgenre', 'speechiness', 'tempo', 'track_artist']]
+filtered_data = data[['track_artist', 'track_name', 'danceability', 'energy', 'playlist_subgenre', 'speechiness', 'acousticness', 'instrumentalness', 'valence', 'tempo']]
 
 # Drop rows where 'track_name' or 'track_artist' is NaN
 filtered_data = filtered_data.dropna(subset=['track_name', 'track_artist'])
@@ -20,7 +20,7 @@ filtered_data['track_name'] = filtered_data['track_name'].astype(str)  # Ensure 
 # Convert 'playlist_subgenre' to numeric using one-hot encoding
 data_encoded = pd.get_dummies(filtered_data['playlist_subgenre'])
 
-features_to_scale = ['speechiness', 'tempo']
+features_to_scale = ['danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'valence', 'tempo']
 
 # Scale 'speechiness' and 'tempo'
 scaler = StandardScaler()
@@ -33,15 +33,26 @@ features = pd.concat([data_encoded, filtered_data[features_to_scale]], axis=1)
 knn = NearestNeighbors(n_neighbors=10, metric='euclidean')
 knn.fit(features)
 
-
+# Function to find the closest matching song using fuzzy matching
 def find_closest_song(song_name, song_list):
     closest_match = difflib.get_close_matches(song_name, song_list, n=1, cutoff=0.6)  # 60% similarity cutoff
     if closest_match:
         return closest_match[0]
     else:
         return None
+        
+# Function to search YouTube for a song and return the first video link
+def get_youtube_link(song_name, artist_name):
+    search_query = f"{song_name} {artist_name} official"
+    videos_search = VideosSearch(search_query, limit=1)
+    result = videos_search.result()
+    
+    if result['result']:
+        return result['result'][0]['link']  # Return the first YouTube video link
+    else:
+        return None
 
-
+# Song recommendation function
 def recommend_song(song_name, artist_name):
     # Find the closest matching song and artist in the dataset
     closest_song_row = filtered_data[
@@ -78,8 +89,14 @@ def recommend_song(song_name, artist_name):
         song, artist = rec
         if song != closest_song and (song, artist) not in recommended_songs:  # Avoid duplicates and the input song
             recommended_songs.add((song, artist))
-            st.write(f"'**{song}**' by **{artist}**")
-            st.divider()
+            youtube_link = get_youtube_link(song, artist)
+            if youtube_link:
+                st.write(f"'**{song}**' by **{artist}**: [YouTube Link]({youtube_link})")
+                st.divider()
+            else:
+                st.write(f"'**{song}**' by **{artist}**: No YouTube link found")
+                st.divider()
+
 
 # Streamlit interface
 st.title("🔎General Song Recommender🔍")
