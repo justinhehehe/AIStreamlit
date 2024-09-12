@@ -92,7 +92,7 @@ def recommend_song(song_name, artist_name):
             youtube_link = get_youtube_link(song, artist)
             if youtube_link:
                 st.write(f"'**{song}**' by **{artist}**")
-                st.write("[YouTube Link]({youtube_link})")
+                st.write(f"[YouTube Link]({youtube_link})")
                 st.divider()
             else:
                 st.write(f"'**{song}**' by **{artist}**: No YouTube link found")
