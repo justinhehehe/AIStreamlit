@@ -37,7 +37,7 @@ def find_closest_song(song_name, song_list):
     if closest_match:
         return closest_match[0]
     else:
-        return st.error("No similar songs in database")
+        return None
 
 
 def recommend_song(song_name, artist_name):
