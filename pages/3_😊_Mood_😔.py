@@ -91,4 +91,4 @@ if st.button("Recommend"):
     if input_song and input_artist:
         recommend_song(input_song, input_artist)
     else:
-        st.write("Please enter both the song name and the artist name.")
+        st.error("Please enter both the song name and the artist name.")
