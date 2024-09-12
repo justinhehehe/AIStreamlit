@@ -83,9 +83,6 @@ st.write("Feeling a type of mood? We dont judge! Input a song of your choice tha
 input_song = st.text_input("🎶Enter the song name:")
 input_artist = st.text_input("👩‍🎤Enter the artist name🧑‍🎤:")
 
-# If both inputs are provided, run the recommendation function
-if input_song and input_artist:
-    recommend_song(input_song, input_artist)
 
 if st.button("Recommend"):
     if input_song and input_artist:
