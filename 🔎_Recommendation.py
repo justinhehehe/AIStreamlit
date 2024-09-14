@@ -2,6 +2,6 @@ import streamlit as st
 
 st.title("🎧Music Recommender🎧")
 
-st.write("Music is a universal language that transcends borders and connects people across cultures and generations. It has the power to evoke emotions, tell stories, and create memories through rhythm, melody, and harmony. Whether it's the upbeat energy of pop, the soothing tones of classical, or the raw emotion of blues, music resonates deeply with listeners, offering a form of expression and escape. It enriches our daily lives, brings people together in celebration, and often serves as a reflection of societal moments and personal experiences.")
+st.write("Millions of songs are accessible through music streaming services in the current digital era, providing listeners with an excessive amount of content. Users frequently find it difficult to find new songs or artists that suit their tastes in such large music archives. While users can actively search for songs or peruse well-liked playlists, this method is not very effective and may result in a dearth of tailored recommendations, which may leave listeners dissatisfied with their musical experience.")
 
 st.sidebar.success("Select type of recommender")
